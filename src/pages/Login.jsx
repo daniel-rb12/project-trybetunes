@@ -28,7 +28,7 @@ class Login extends Component {
     }
   };
 
-  saveAndRedirect = async () => {
+  saveAndRedirect = () => {
     const { login } = this.state;
     this.setState({ loading: true }, async () => {
       await createUser({ name: login });
