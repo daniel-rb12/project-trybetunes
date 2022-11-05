@@ -33,6 +33,9 @@ class MusicCard extends Component {
 MusicCard.propTypes = {
   trackName: PropTypes.string,
   previewUrl: PropTypes.string,
+  trackId: PropTypes.number,
+  handleChange: PropTypes.func,
+  checked: PropTypes.bool,
 }.isRequired;
 
 export default MusicCard;
