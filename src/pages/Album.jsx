@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 import MusicCard from '../Components/MusicCard';
 import musicsAPI from '../services/musicsAPI';
 import Loading from './Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
@@ -16,14 +16,27 @@ class Album extends Component {
     checked: {},
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.setState(({ loading: true }), async () => {
+      await this.getMusics();
+      const box = await getFavoriteSongs();
+      box.forEach((music) => {
+        this.setState((estadoAnterior) => ({
+          checked: { ...estadoAnterior.checked, [music.trackId]: true },
+          loading: false,
+        }));
+      });
+    });
+  }
+
+  getMusics = async () => {
     const { match } = this.props;
     const allMusics = await musicsAPI(match.params.id);
     this.setState({ artist: allMusics[0].artistName,
       albumName: allMusics[0].collectionName,
       image: allMusics[0].artworkUrl100,
       musics: allMusics.slice(1) });
-  }
+  };
 
   handleChange = ({ target }) => {
     const { name, checked } = target;
