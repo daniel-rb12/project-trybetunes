@@ -32,8 +32,9 @@ class Album extends Component {
     }));
     if (checked) {
       this.setState({ loading: true }, async () => {
-        const { trackId } = this.state;
-        await addSong(trackId);
+        const { musics } = this.state;
+        const songs = musics.find((song) => song.trackId === +name);
+        await addSong(songs);
         this.setState({ loading: false });
       });
     }
