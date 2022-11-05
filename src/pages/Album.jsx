@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 import MusicCard from '../Components/MusicCard';
 import musicsAPI from '../services/musicsAPI';
+import Loading from './Loading';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
@@ -10,6 +12,8 @@ class Album extends Component {
     albumName: '',
     image: '',
     musics: [],
+    loading: false,
+    checked: {},
   };
 
   async componentDidMount() {
@@ -21,25 +25,50 @@ class Album extends Component {
       musics: allMusics.slice(1) });
   }
 
+  handleChange = ({ target }) => {
+    const { name, checked } = target;
+    this.setState((estadoAnterior) => ({
+      checked: { ...estadoAnterior.checked, [name]: checked },
+    }));
+    if (checked) {
+      this.setState({ loading: true }, async () => {
+        const { trackId } = this.state;
+        await addSong(trackId);
+        this.setState({ loading: false });
+      });
+    }
+  };
+
   render() {
-    const { musics, artist, albumName, image } = this.state;
+    const { musics, artist, albumName, image, loading, checked } = this.state;
+    const { handleChange } = this;
     return (
       <div data-testid="page-album">
         <Header />
-        <img src={ image } alt={ artist } />
-        <p data-testid="album-name">{albumName}</p>
-        <span data-testid="artist-name">{artist}</span>
-        <div>
-          <ul>
-            { musics.map((music) => (
-              <MusicCard
-                trackName={ music.trackName }
-                previewUrl={ music.previewUrl }
-                key={ music.trackId }
-              />
-            )) }
-          </ul>
-        </div>
+        {
+          loading ? <Loading />
+            : (
+              <div>
+                <img src={ image } alt={ artist } />
+                <p data-testid="album-name">{albumName}</p>
+                <span data-testid="artist-name">{artist}</span>
+                <div>
+                  <ul>
+                    { musics.map((music) => (
+                      <MusicCard
+                        trackName={ music.trackName }
+                        previewUrl={ music.previewUrl }
+                        trackId={ music.trackId }
+                        handleChange={ handleChange }
+                        checked={ checked[music.trackId] }
+                        key={ music.trackId }
+                      />
+                    )) }
+                  </ul>
+                </div>
+              </div>
+            )
+        }
       </div>
     );
   }
