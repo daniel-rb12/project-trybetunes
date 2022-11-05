@@ -18,7 +18,6 @@ class Album extends Component {
 
   async componentDidMount() {
     await this.getMusics();
-    this.restoreFavorites();
   }
 
   getMusics = async () => {
@@ -27,7 +26,9 @@ class Album extends Component {
     this.setState({ artist: allMusics[0].artistName,
       albumName: allMusics[0].collectionName,
       image: allMusics[0].artworkUrl100,
-      musics: allMusics.slice(1) });
+      musics: allMusics.slice(1) }, () => {
+      this.restoreFavorites();
+    });
   };
 
   handleChange = ({ target }) => {
@@ -51,9 +52,9 @@ class Album extends Component {
       box.forEach((music) => {
         this.setState((estadoAnterior) => ({
           checked: { ...estadoAnterior.checked, [music.trackId]: true },
-          loading: false,
         }));
       });
+      this.setState({ loading: false });
     });
   };
 
@@ -80,6 +81,7 @@ class Album extends Component {
                         handleChange={ handleChange }
                         checked={ checked[music.trackId] }
                         key={ music.trackId }
+                        loading={ loading }
                       />
                     )) }
                   </ul>

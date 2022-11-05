@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Loading from '../pages/Loading';
 
 class MusicCard extends Component {
   render() {
-    const { trackName, previewUrl, trackId, handleChange, checked } = this.props;
+    const { trackName, previewUrl, trackId, handleChange, checked, loading } = this.props;
+    if (loading) {
+      return <Loading />;
+    }
     return (
       <div>
         <p>{ trackName }</p>
