@@ -16,17 +16,9 @@ class Album extends Component {
     checked: {},
   };
 
-  componentDidMount() {
-    this.setState(({ loading: true }), async () => {
-      await this.getMusics();
-      const box = await getFavoriteSongs();
-      box.forEach((music) => {
-        this.setState((estadoAnterior) => ({
-          checked: { ...estadoAnterior.checked, [music.trackId]: true },
-          loading: false,
-        }));
-      });
-    });
+  async componentDidMount() {
+    await this.getMusics();
+    this.restoreFavorites();
   }
 
   getMusics = async () => {
@@ -51,6 +43,18 @@ class Album extends Component {
         this.setState({ loading: false });
       });
     }
+  };
+
+  restoreFavorites = () => {
+    this.setState(({ loading: true }), async () => {
+      const box = await getFavoriteSongs();
+      box.forEach((music) => {
+        this.setState((estadoAnterior) => ({
+          checked: { ...estadoAnterior.checked, [music.trackId]: true },
+          loading: false,
+        }));
+      });
+    });
   };
 
   render() {
