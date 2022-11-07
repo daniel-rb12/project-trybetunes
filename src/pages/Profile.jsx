@@ -28,7 +28,7 @@ class Profile extends Component {
             <p>{ name }</p>
             <p>{ email }</p>
             <p>{ description }</p>
-            <Link to="/profile/edit">Editar perfil</Link>
+            <Link to="profile/edit">Editar perfil</Link>
           </div>
         ))}
       </div>
