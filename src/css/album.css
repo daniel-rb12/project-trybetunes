@@ -1,0 +1,39 @@
+.music-container {
+  background-color: rgb(24, 23, 23);
+}
+
+.music-title-container {
+  width: 100%;
+  background-color: #383636;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.music-title-container img {
+  border-radius: 1em;
+  max-height: 150px;
+  margin-bottom: 10px;
+}
+
+.music-title-container p:first-of-type {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+.music-title-container p:last-of-type {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+
+.musics-card-container {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

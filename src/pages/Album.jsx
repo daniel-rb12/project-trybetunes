@@ -5,6 +5,7 @@ import MusicCard from '../Components/MusicCard';
 import musicsAPI from '../services/musicsAPI';
 import Loading from './Loading';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../css/album.css';
 
 class Album extends Component {
   state = {
@@ -35,6 +36,7 @@ class Album extends Component {
     const { name, checked } = target;
     this.setState((estadoAnterior) => ({
       checked: { ...estadoAnterior.checked, [name]: checked },
+
     }));
     if (checked) {
       this.setState({ loading: true }, async () => {
@@ -75,12 +77,15 @@ class Album extends Component {
         {
           loading ? <Loading />
             : (
-              <div>
-                <img src={ image } alt={ artist } />
-                <p data-testid="album-name">{albumName}</p>
-                <span data-testid="artist-name">{artist}</span>
+              <div className="music-container">
+                <div className="music-title-container">
+                  <img src={ image } alt={ artist } />
+                  <p data-testid="album-name">{albumName}</p>
+                  <p data-testid="artist-name">{artist}</p>
+                </div>
+
                 <div>
-                  <ul>
+                  <ul className="musics-card-container">
                     { musics.map((music) => (
                       <MusicCard
                         trackName={ music.trackName }

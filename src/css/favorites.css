@@ -1,0 +1,8 @@
+.favorites-container {
+  height: 100vh;
+  background-color: rgb(24, 23, 23);
+}
+
+.musics-fav {
+  padding: 0;
+}

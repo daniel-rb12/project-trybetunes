@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import MusicCard from '../Components/MusicCard';
 import Loading from './Loading';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../css/favorites.css';
 
 class Favorites extends Component {
   state = {
@@ -38,13 +39,13 @@ class Favorites extends Component {
   render() {
     const { favorites, loading, checked } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <div data-testid="page-favorites" className="favorites-container">
         <Header />
         {
           loading ? <Loading />
             : (
               <div>
-                <ul>
+                <ul className="musics-fav">
                   { favorites.map((favorite) => (
                     <MusicCard
                       trackName={ favorite.trackName }

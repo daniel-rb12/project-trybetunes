@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 import Loading from './Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import '../css/profileEdit.css';
 
 class ProfileEdit extends Component {
   state = {
@@ -71,62 +72,68 @@ class ProfileEdit extends Component {
         {
           loading ? <Loading />
             : (
-              <form>
-                <label htmlFor="image">
-                  Imagem
-                  <input
-                    data-testid="edit-input-image"
-                    type="text"
-                    name="image"
-                    id="image"
-                    value={ image }
-                    onChange={ handleChange }
-                  />
-                </label>
-                <label htmlFor="name">
-                  Nome
-                  <input
-                    data-testid="edit-input-name"
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={ name }
-                    onChange={ handleChange }
-                  />
-                </label>
-                <label htmlFor="email">
-                  Email
-                  <input
-                    data-testid="edit-input-email"
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={ email }
-                    onChange={ handleChange }
-                  />
-                </label>
-                <label htmlFor="description">
-                  Descrição
-                  <textarea
-                    data-testid="edit-input-description"
-                    name="description"
-                    id="description"
-                    cols="30"
-                    rows="10"
-                    onChange={ handleChange }
-                    value={ description }
+              <form className="edit-container">
+                <div className="edit-profile">
+                  <img data-testid="profile-image" src={ image } alt={ name } />
+                  <label htmlFor="image">
+                    <p>Foto</p>
+                    <input
+                      data-testid="edit-input-image"
+                      type="text"
+                      name="image"
+                      id="image"
+                      value={ image }
+                      placeholder="Insira o link de sua foto"
+                      onChange={ handleChange }
+                    />
+                  </label>
+                  <label htmlFor="name">
+                    <p>Nome</p>
+                    <input
+                      data-testid="edit-input-name"
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={ name }
+                      placeholder="Digite seu nome"
+                      onChange={ handleChange }
+                    />
+                  </label>
+                  <label htmlFor="email">
+                    <p>Email</p>
+                    <input
+                      data-testid="edit-input-email"
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={ email }
+                      placeholder="Insira seu email"
+                      onChange={ handleChange }
+                    />
+                  </label>
+                  <label htmlFor="description">
+                    <p>Descrição</p>
+                    <textarea
+                      data-testid="edit-input-description"
+                      name="description"
+                      id="description"
+                      onChange={ handleChange }
+                      value={ description }
+                      placeholder="Escreva um pouco sobre você"
+                      maxLength="150"
+                    >
+                      { description }
+                    </textarea>
+                  </label>
+                  <button
+                    data-testid="edit-button-save"
+                    type="button"
+                    onClick={ userUpdate }
+                    disabled={ disabled }
                   >
-                    { description }
-                  </textarea>
-                </label>
-                <button
-                  data-testid="edit-button-save"
-                  type="button"
-                  onClick={ userUpdate }
-                  disabled={ disabled }
-                >
-                  Editar perfil
-                </button>
+                    Editar perfil
+                  </button>
+                </div>
               </form>
             )
         }
