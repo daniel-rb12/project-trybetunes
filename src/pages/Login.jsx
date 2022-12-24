@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
@@ -63,7 +64,7 @@ class Login extends Component {
                   placeholder="Digite seu nome"
                   value={ login }
                   onChange={ handleChange }
-                  maxLength='12'
+                  maxLength="12"
                 />
               </label>
               <button
