@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/app-toot-name/static/css/main.fd7276b8.css",
+    "main.js": "/app-toot-name/static/js/main.a4e75d44.js",
+    "static/media/equalizer_bg.png": "/app-toot-name/static/media/equalizer_bg.8d0525a3a00e8e65c379.png",
+    "static/media/trybe_logo.png": "/app-toot-name/static/media/trybe_logo.c013cc0df45efb3e68c6.png",
+    "index.html": "/app-toot-name/index.html",
+    "main.fd7276b8.css.map": "/app-toot-name/static/css/main.fd7276b8.css.map",
+    "main.a4e75d44.js.map": "/app-toot-name/static/js/main.a4e75d44.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd7276b8.css",
+    "static/js/main.a4e75d44.js"
+  ]
+}
