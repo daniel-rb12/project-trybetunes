@@ -22,11 +22,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-<<<<<<< HEAD
   "homepage": "https://daniel-rb12.github.io/project-trybetunes/",
-=======
-  "homepage": "https://daniel-rb12.github.io/",
->>>>>>> 7006c43d572b6bbcf999833b14e86afe70685898
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
