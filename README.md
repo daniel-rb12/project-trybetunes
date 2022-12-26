@@ -39,8 +39,8 @@ npm start
 E pronto, agora você consegue visualizar o projeto rodando localmente em sua rede e máquina.
 
 ## Contatos
-LinkedIn: [daniel-rb12](https://www.linkedin.com/in/daniel-rb12/)
-E-mail: _daniel.ribeiro012@hotmail.com_
+* LinkedIn: [daniel-rb12](https://www.linkedin.com/in/daniel-rb12/)
+* E-mail: _daniel.ribeiro012@hotmail.com_
 
 
 #### Comentários
